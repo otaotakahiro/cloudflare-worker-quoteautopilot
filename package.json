@@ -1,0 +1,46 @@
+{
+  "name": "cloudflare-worker-quoteautopilot",
+  "version": "1.0.0",
+  "description": "AI-powered invoice to quote automation system using o4-mini",
+  "main": "src/Worker/Infrastructure/EntryPoint/worker.entry.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "dev:client": "vite dev --port 5173",
+    "build": "npm run build:worker && npm run build:client",
+    "build:worker": "esbuild src/Worker/Infrastructure/EntryPoint/worker.entry.ts --bundle --outfile=dist/worker.js --format=esm --target=es2020",
+    "build:client": "vite build --outDir dist/client",
+    "deploy": "wrangler deploy",
+    "test": "vitest",
+    "type-check": "tsc --noEmit",
+    "ai:test": "echo 'Testing o4-mini model integration...' && npm run build:worker",
+    "ai:config": "echo 'AI Model: o4-mini (high-speed reasoning)' && echo 'Max Tokens: 1200' && echo 'Temperature: 0.1'"
+  },
+  "keywords": [
+    "cloudflare-workers",
+    "ai",
+    "o4-mini",
+    "invoice-automation",
+    "pdf-analysis",
+    "quote-generation"
+  ],
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20240909.0",
+    "hono": "^4.6.3",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.9",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4",
+    "wrangler": "^3.84.0"
+  },
+  "author": "otaotakahiro",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/otaotakahiro/cloudflare-workers-QuoteAutopilot.git"
+  }
+}

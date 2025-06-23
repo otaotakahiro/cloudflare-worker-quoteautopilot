@@ -1,0 +1,67 @@
+# Project files
+.env*
+!.env.example
+.output
+dist
+
+# Node
+node_modules
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+/src/generated/prisma
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Cloudflare Workers
+.wrangler/
+wrangler.toml.bak
+
+# 環境変数ファイル (機密情報保護)
+.env
+.env.local
+.env.development
+.env.production
+.dev.vars
+
+# AI関連の機密ファイル
+openai-key.txt
+api-keys.json
+
+# QuoteAutopilot固有
+uploads/
+temp/
+*.pdf
+dist/
+
+# === 重要: 環境変数管理 ===
+# .dev.vars     → Cloudflare Workers用（API キー含む）
+# .env.local    → Vite用（VITE_プレフィックス）
+# env.example   → テンプレート（公開OK）

@@ -1,0 +1,89 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "account_id": "d523fc076e26c302196c7c7565a316e4",
+  "name": "oshichan",
+  "compatibility_date": "2025-04-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "./src/Worker/Infrastructure/EntryPoint/worker.entry.ts",
+  "assets": {
+    "not_found_handling": "single-page-application",
+  },
+  "observability": {
+    "enabled": true,
+  },
+  "vars": {
+    "mode": "local",
+  },
+  // KVネームスペース設定
+  "kv_namespaces": [
+    {
+      "binding": "INVOICE_KV",
+      "id": "a671ed3e5e674b508c19154600d8c85a",
+      "preview_id": "a671ed3e5e674b508c19154600d8c85a"
+    },
+    {
+      "binding": "COMPANY_KV",
+      "id": "b81446d9ff4b4289914ee418e2ab1f90",
+      "preview_id": "b81446d9ff4b4289914ee418e2ab1f90"
+    }
+  ],
+  // Hyperdriveは一時的に無効化（KVストレージ使用のため）
+  // "hyperdrive": [
+  //   {
+  //     "binding": "DB",
+  //     "id": "4befdaf1ff634351a916bfaa7efe5b57",
+  //   },
+  // ],
+  "env": {
+    "develop": {
+      "vars": {
+        "mode": "develop",
+      },
+      "kv_namespaces": [
+        {
+          "binding": "INVOICE_KV",
+          "id": "a671ed3e5e674b508c19154600d8c85a",
+          "preview_id": "a671ed3e5e674b508c19154600d8c85a"
+        },
+        {
+          "binding": "COMPANY_KV",
+          "id": "b81446d9ff4b4289914ee418e2ab1f90",
+          "preview_id": "b81446d9ff4b4289914ee418e2ab1f90"
+        }
+      ],
+      // "hyperdrive": [
+      //   {
+      //     "binding": "DB",
+      //     "id": "4befdaf1ff634351a916bfaa7efe5b57",
+      //   },
+      // ],
+    },
+    "master": {
+      "vars": {
+        "mode": "master",
+      },
+      "kv_namespaces": [
+        {
+          "binding": "INVOICE_KV",
+          "id": "a671ed3e5e674b508c19154600d8c85a",
+          "preview_id": "a671ed3e5e674b508c19154600d8c85a"
+        },
+        {
+          "binding": "COMPANY_KV",
+          "id": "b81446d9ff4b4289914ee418e2ab1f90",
+          "preview_id": "b81446d9ff4b4289914ee418e2ab1f90"
+        }
+      ],
+      // "hyperdrive": [
+      //   {
+      //     "binding": "DB",
+      //     "id": "4befdaf1ff634351a916bfaa7efe5b57",
+      //   },
+      // ],
+    },
+  },
+}

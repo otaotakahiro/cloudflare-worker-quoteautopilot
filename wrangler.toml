@@ -1,0 +1,45 @@
+name = "cloudflare-worker-quoteautopilot"
+main = "src/Worker/Infrastructure/EntryPoint/worker.entry.ts"
+compatibility_date = "2024-01-01"
+
+[env.production]
+# 本番環境設定
+
+[env.development]
+# 開発環境設定
+
+# o4-mini AI モデル設定
+[vars]
+AI_MODEL = "o4-mini"
+AI_MAX_TOKENS = "1200"
+AI_TEMPERATURE = "0.1"
+FILE_MAX_SIZE = "10485760"
+
+# KVネームスペース設定
+[[kv_namespaces]]
+binding = "PDF_KV"
+id = "264aba070b6d41709e4ed7a8c11bb265"
+
+[[kv_namespaces]]
+binding = "COMPANY_KV"
+id = "47df2192620a4f139e67deb0915121de"
+
+# 開発サーバー設定
+[dev]
+port = 8787
+local = true
+
+# ワーカー設定
+[build]
+command = "npm run build"
+cwd = "./"
+watch_dir = "src"
+
+# 環境変数の説明
+# AI_MODEL: 使用するAIモデル（o4-mini - 高速で費用効率的な推論モデル）
+# AI_MAX_TOKENS: o4-miniの推論能力を活かすため少し多めに設定
+# AI_TEMPERATURE: 推論モデルなので低めに設定して一貫性を重視
+
+# KVネームスペース情報
+# PDF_KV: QuoteAutopilot_PDF (b44e361b5f8b490bb7dae2a4098b18f2)
+# COMPANY_KV: QuoteAutopilot_COMPANY (49fa810d5de84c3ebc7b6e7f3bdead8b)
